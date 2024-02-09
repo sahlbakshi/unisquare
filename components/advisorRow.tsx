@@ -2,7 +2,11 @@ interface Advisor {
     email: string;
     name: string;
     avatarURL: string;
-    services: any
+    services: Service[]
+}
+
+interface Service {
+    tag: string
 }
 
 export default function AdvisorRow({ advisors }: { advisors: Advisor[] }) {
@@ -22,7 +26,7 @@ export default function AdvisorRow({ advisors }: { advisors: Advisor[] }) {
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-4 text-sm">
-                    {user.services.map((service: string, index: number) => (
+                    {user.services.map((service: Service, index: number) => (
                         <div className="bg-blue-100 text-blue-600 py-1 px-3 rounded-xl" key={index}>{service.tag}</div>
                     ))}
                 </div>
