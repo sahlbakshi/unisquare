@@ -10,8 +10,8 @@ export default function Page() {
   // will implement pages if users exceed 40
   const [mode, setMode] = useState("student")
   const [email, setEmail] = useState("")
-  const [advisors, setAdvisors] = useState(null)
-  const [advisor, setAdvisor] = useState(null)
+  const [advisors, setAdvisors] = useState([])
+  const [advisor, setAdvisor] = useState([])
   const noAdvisorsMessage = "We have no advisors :("
   const addAdvisorProfileMessage = "+ Add your profile"
 
@@ -52,7 +52,7 @@ export default function Page() {
     } 
     else if (mode == 'advisor') {
       if (advisor && advisor.length) {
-        return (<AdvisorProfile advisor={advisor}></AdvisorProfile>)
+        return (<AdvisorProfile advisor={advisor[0]}></AdvisorProfile>)
       } else {
         return (<button className="py-4 px-8 rounded-md border-black bg-orange-300 hover:bg-orange-500 border-2 text-2xl mt-24">{addAdvisorProfileMessage}</button>)
       }
