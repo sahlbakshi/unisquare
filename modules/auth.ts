@@ -1,4 +1,5 @@
 import supabase from "./supabase"
+import { API } from '@/modules/baseRoute'
 
 export const signInWithGoogle = async () => {
     try {
@@ -9,7 +10,7 @@ export const signInWithGoogle = async () => {
             access_type: 'offline',
             prompt: 'consent',
           },
-          redirectTo: 'http://localhost:3000/mode'
+          redirectTo: `${API}/mode`
         },
       })
     } catch (error) {

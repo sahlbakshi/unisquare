@@ -5,6 +5,7 @@ import { session } from "@/modules/auth";
 import { redirect } from "next/navigation";
 import AdvisorRow from "@/components/advisorRow";
 import AdvisorProfile from "@/components/advisorProfile";
+import { API } from "@/modules/baseRoute"
 
 export default function Page() {
   // will implement pages if users exceed 40
@@ -26,15 +27,16 @@ export default function Page() {
   }, [])
 
   useEffect(() => {
+    console.log(process.env.API)
     if (mode == 'student') {
-      fetch(`http://localhost:3000/api/advisors`, {
+      fetch(`${API}/api/advisors`, {
       method: 'GET'
     })
     .then(result => result.json())
     .then(data => setAdvisors(data))
     } 
     else if (mode == 'advisor') {
-      fetch(`http://localhost:3000/api/advisor/${email}`, {
+      fetch(`${API}/api/advisor/${email}`, {
       method: 'GET'
     })
     .then(result => result.json())

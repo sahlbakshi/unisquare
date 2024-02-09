@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { signInWithGoogle, signOut, session } from "@/modules/auth"
 import { useRouter } from 'next/navigation'
+import { API } from '@/modules/baseRoute'
 
 export default function Navbar() {
   const router = useRouter()
@@ -28,7 +29,7 @@ export default function Navbar() {
   })
 
   const insertIntoUserTable = (email:string, avatarURL:string, name:string) => {
-    fetch(`http://localhost:3000/api/user/${email}`, {
+    fetch(`${API}/api/user/${email}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({avatarURL: avatarURL, name: name})
@@ -38,7 +39,7 @@ export default function Navbar() {
   const handleFirstLogIn = (email:string, avatarURL:string, name:string) => {
     setEmail(email) // maybe chnage later
     setPicURL(avatarURL) // chnage later
-    fetch(`http://localhost:3000/api/user/${email}`, {
+    fetch(`${API}/api/user/${email}`, {
       method: 'GET'
     })
     .then(response => response.json())
