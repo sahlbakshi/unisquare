@@ -20,7 +20,7 @@ export default function AdvisorRow({ advisors }: { advisors: Advisor[] }) {
                     <div className="text-2xl">{user.name}</div>
                     </div>
                     <div className="text-lg flex items-center gap-4">
-                    <button className="py-1 px-4 rounded-md border-2 border-black hover:bg-green-500 hover:text-white hover:cursor-pointer">
+                    <button className="py-1 px-4 rounded-md border-2 border-black bg-green-200 hover:bg-green-500 hover:text-white hover:cursor-pointer">
                         View Profile
                     </button>
                     </div>
