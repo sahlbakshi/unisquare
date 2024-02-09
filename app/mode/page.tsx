@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { session } from "@/modules/auth";
-import { redirect } from "next/navigation";
 import AdvisorRow from "@/components/advisorRow";
 import AdvisorProfile from "@/components/advisorProfile";
 import { API } from "@/modules/baseRoute"
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   // will implement pages if users exceed 40
+  const router = useRouter()
   const [mode, setMode] = useState("student")
   const [email, setEmail] = useState("")
   const [advisors, setAdvisors] = useState([])
@@ -19,7 +20,7 @@ export default function Page() {
   useEffect(() => {
     session().then((data) => {
       if (!data?.session) {
-        redirect('/')
+        router.push('/')
       } else {
         setEmail(data.session.user.user_metadata.email)
       }
@@ -27,7 +28,6 @@ export default function Page() {
   }, [])
 
   useEffect(() => {
-    console.log(process.env.API)
     if (mode == 'student') {
       fetch(`${API}/api/advisors`, {
       method: 'GET'
@@ -65,8 +65,8 @@ export default function Page() {
     <div className="flex flex-col items-center w-full">
       <div className="mb-8 text-2xl">Modes</div>
       <div className="flex gap-10 text-lg">
-        <button onClick={() => setMode('student')} className={`py-2 px-6 rounded-md border-2 border-black hover:bg-slate-300 hover:cursor-pointer bg-${mode == 'student' ? 'slate-300' : ''}`}>Student</button>
-        <button onClick={() => setMode('advisor')} className={`py-2 px-6 rounded-md border-2 border-black hover:bg-slate-300 hover:cursor-pointer bg-${mode == 'advisor' ? 'slate-300' : ''}`}>Advisor</button>
+        <button onClick={() => setMode('student')} className={`py-2 px-6 rounded-md border-2 border-black hover:bg-slate-300 hover:cursor-pointer ${mode == 'student' ? 'bg-slate-300' : 'bg-white'}`}>Student</button>
+        <button onClick={() => setMode('advisor')} className={`py-2 px-6 rounded-md border-2 border-black hover:bg-slate-300 hover:cursor-pointer ${mode == 'advisor' ? 'bg-slate-300' : 'bg-white'}`}>Advisor</button>
       </div>
       {getModeContent()}
     </div>

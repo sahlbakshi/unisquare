@@ -14,7 +14,7 @@ export default function Navbar() {
 
   useEffect(() => {
     // better way to render sign in and sign out button after getting 
-    //  promise from the sign in and sign out auth functions
+    // promise from the sign in and sign out auth functions
     session().then((data) => {
       if (data?.session) {
         setIsLoggedIn(true)
@@ -48,6 +48,7 @@ export default function Navbar() {
         // SET PICTURE AS THE COLUM WE HAVE ON FILE
       } else {
         // SET PICTURE AS THE GOOGLE ONE JUST NOW
+        // RMEOVE AND GET FROM SEESION ONLY WHENUSER CLICKS PROFILE
         insertIntoUserTable(email, avatarURL, name)
       }
     })
@@ -76,7 +77,7 @@ export default function Navbar() {
             <div className="flex items-center gap-4">
               <button 
               className="py-1 px-4 rounded-md border-2 border-black hover:bg-slate-300 text-lg" onClick={handleSignOut}>SIGN OUT</button>
-              <Link href={`/profile/${email}`}><img className="h-12 rounded-full hover:border-8 hover:border-bg-slate-300" src={picURL}></img></Link>
+              <Link href={`/`}><img className="h-12 rounded-full hover:border-8 hover:border-bg-slate-400" src={picURL}></img></Link>
             </div>
           ) : (
             <button className="py-1 px-4 rounded-md border-2 border-black hover:bg-slate-300 text-md" onClick={handleSignIn}>SIGN IN</button>
