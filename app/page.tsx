@@ -1,4 +1,8 @@
+"use client"
+
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { API } from "@/modules/baseRoute";
 
 export default function Page() {
   return (
@@ -6,7 +10,7 @@ export default function Page() {
       <div className="flex flex-col items-center gap-4 text-center">
         <div className="text-8xl font-bold">UNISQUARE</div>
         <div className="text-4xl font-semibold mb-10 w-3/5">Your hub of shared wisdom – where students guide students</div>
-        <Link className="rounded-full bg-black text-white text-3xl py-6 px-12 hover:bg-slate-900" href={'/onboard'}>JOIN NOW</Link>
+        <button onClick={() => signIn('google', { callbackUrl: `${API}/onboard` })} className="rounded-full bg-black text-white text-3xl py-6 px-12 hover:bg-zinc-800">JOIN NOW</button>
       </div>
 
       <div className="flex flex-col items-center gap-4 text-center w-4/6">
@@ -38,7 +42,7 @@ export default function Page() {
             <div className="text-2xl font-semibold">1 Sign Up</div>
             <div className="text-xl mb-4">Sign up as an advisor and submit your form</div>
             <div className="text-2xl font-semibold">2 Get requests</div>
-            <div className="text-xl mb-4">Get requests from students we think you can help</div>
+            <div className="text-xl mb-4">Get requests from students based on your submitted form</div>
             <div className="text-2xl font-semibold">3 Schedule Meeting</div>
             <div className="text-xl mb-4">Accept requests and schedule your meeting with our team!</div>
           </div>

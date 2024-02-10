@@ -9,14 +9,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         .from('users')
         .select('*')
         .eq('email', email)
+        .single()
         res.status(200).json(user)
       } 
       else if (req.method == "POST") {
         const { email } = req.query
-        const { name, avatarURL } = req.body
+        const { name } = req.body
         await supabase.from('users').insert([
-            { email: email, name: name,  avatarURL: avatarURL}
+            { email: email, name: name}
         ])
+        res.status(200).json('succesfully added new user')
       }
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
